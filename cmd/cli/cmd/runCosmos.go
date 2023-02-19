@@ -13,7 +13,7 @@ var runCosmosCmd = &cobra.Command{
 	Short: "Print the version number of Hugo",
 	Long:  `All software has versions. This is Hugo's`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := Run(); err != nil {
+		if err := DockerRun(); err != nil {
 			return err
 		}
 

@@ -3,6 +3,9 @@ module github.com/r-delgadillo/cosmos
 go 1.19
 
 require (
+	github.com/fatih/structs v1.1.0
+	github.com/goccy/go-json v0.10.0
+	github.com/gorilla/mux v1.8.0
 	github.com/princjef/mageutil v1.0.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.15.0

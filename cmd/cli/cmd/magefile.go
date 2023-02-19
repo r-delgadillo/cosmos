@@ -10,11 +10,11 @@ func init() {
 	os.Chdir("cmd/mycommand") // Change directory to your command directory
 }
 
-func Build() error {
+func DockerBuild() error {
 	return shellcmd.Command("docker build -t myapp .").Run()
 }
 
-func Run() error {
-	Build()
+func DockerRun() error {
+	DockerBuild()
 	return shellcmd.Command("docker run -p 8080:8080 myapp").Run()
 }

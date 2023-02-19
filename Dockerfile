@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o webapp cmd/webapp/main.go
+RUN go build -o app cmd/app/main.go
 
 EXPOSE 8080
 
-CMD ["./webapp"]
+CMD ["./app"]
