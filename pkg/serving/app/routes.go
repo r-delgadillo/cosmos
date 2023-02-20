@@ -7,12 +7,19 @@ import (
 // routes defines and attaches the full set of routes in the application to the
 // server's router. This should only be called once on server initialization
 func (s *Server) routes() {
-	// Discovery
+
 	s.Route(
 		"health",
 		"/health",
 		http.MethodGet,
 		s.handleHealth,
+	)
+
+	s.Route(
+		"squaringpipelines",
+		"/examples/pipelines/squaring",
+		http.MethodGet,
+		s.handlePipelinesSquaring,
 	)
 
 	// s.Router.NotFoundHandler = s.internal.Router.NewRoute().HandlerFunc(http.NotFound).GetHandler()
