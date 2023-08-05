@@ -22,6 +22,13 @@ func (s *Server) routes() {
 		s.handlePipelinesSquaring,
 	)
 
+	s.Route(
+		"squaringpipelines",
+		"/examples/pipelines/producer",
+		http.MethodGet,
+		s.handleProducer,
+	)
+
 	// s.Router.NotFoundHandler = s.internal.Router.NewRoute().HandlerFunc(http.NotFound).GetHandler()
 }
 

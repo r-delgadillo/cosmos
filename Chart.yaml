@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kafka
+description: Deploys an E2E edge environment for IoTC VNext efforts
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+  - name: kafka
+    repository: bitnami
+    version: 21.0.1

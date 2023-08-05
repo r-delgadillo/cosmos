@@ -1,0 +1,5 @@
+serviceName: cosmosapp
+replicaCount: 1
+image:
+  tag: latest
+  repository: iotctiadfcontainers.azurecr.io/cosmos

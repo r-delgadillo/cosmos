@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.serviceName }}
+  namespace: {{ $.Release.Namespace | default "default" | quote }}
+  labels:
+    app: {{ .Values.serviceName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.serviceName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.serviceName }}
+    spec:
+      containers:
+        - name: {{ .Values.serviceName }}
+          image: cosmos
+          imagePullPolicy: Never
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+          - name: {{ .Values.serviceName }}
+            mountPath: /config
+          - name: app-volume
+            mountPath: /cosmos/
+          ports:
+          - name: http
+            containerPort: 80
+          env:
+          - name: CLUSTER_ID
+            value: "edge"
+          - name: NATS  
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.serviceName }}
+                key: nats
+      volumes:
+      - name: {{ .Values.serviceName }}
+        configMap:
+          name: {{ .Values.serviceName }}
+          items:
+          - key: config.json
+            path: config.json
+      - name: app-volume
+        hostPath:
+        # use minikube start -mout to specify root dir
+         path: /cosmos
